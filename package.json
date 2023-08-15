@@ -2,7 +2,6 @@
   "name": "back-end-homemadego",
   "version": "1.0.0",
   "description": "",
-  
   "main": "index.js",
   "scripts": {
     "start:dev": "ts-node-dev --respawn --transpile-only --exit-child src/server.ts",
