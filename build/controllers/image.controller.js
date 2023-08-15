@@ -95,3 +95,4 @@ exports.imageController = {
         });
     }
 };
+//# sourceMappingURL=image.controller.js.map

@@ -8,3 +8,4 @@ routes.post("/", user_controller_1.userController.authmiddleware, order_controll
 routes.get("/:id", order_controller_1.orderController.findUniqueOrder);
 routes.get("/", order_controller_1.orderController.findAllOrder);
 exports.default = routes;
+//# sourceMappingURL=order.routes.js.map

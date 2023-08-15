@@ -102,6 +102,7 @@ exports.menuItemController = {
                             })];
                     case 1:
                         uniqueMenuItem = _a.sent();
+                        // console.log('menuId:', paramId)
                         return [2 /*return*/, res.json({ uniqueMenuItem: uniqueMenuItem })];
                 }
             });
@@ -109,12 +110,19 @@ exports.menuItemController = {
     },
     findAllMenuItems: function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var menuItems;
+            var paramId, menuItems;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, prisma_1.default.menuItem.findMany()];
+                    case 0:
+                        paramId = req.params.kitchenId;
+                        return [4 /*yield*/, prisma_1.default.menuItem.findMany({
+                                where: {
+                                    kitchenId: paramId
+                                }
+                            })];
                     case 1:
                         menuItems = _a.sent();
+                        console.log('kitchenId:', paramId);
                         return [2 /*return*/, res.json(menuItems)];
                 }
             });
@@ -149,3 +157,4 @@ exports.menuItemController = {
     //     return res.status
     // }
 };
+//# sourceMappingURL=menuItem.controller.js.map

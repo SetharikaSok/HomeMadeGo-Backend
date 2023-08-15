@@ -35,22 +35,46 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var client_1 = require("@prisma/client");
-var prisma = new client_1.PrismaClient();
-var main = function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-    return [2 /*return*/];
-}); }); };
-main()
-    .catch(function (e) { return console.error(e); })
-    .finally(function () { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, prisma.$disconnect()];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
-//# sourceMappingURL=seed.js.map
+exports.locationController = void 0;
+var axios_1 = __importDefault(require("axios"));
+var geolib_1 = require("geolib");
+exports.locationController = {
+    getLocation: function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var zipCode, response, data, zipCodeLat_1, zipCodeLon_1, radiusInMeters_1, locations, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        zipCode = req.query.zipCode;
+                        return [4 /*yield*/, axios_1.default.get("https://nominatim.openstreetmap.org/search?postalcode=".concat(zipCode, "&format=json&limit=10"))];
+                    case 1:
+                        response = _a.sent();
+                        data = response.data;
+                        zipCodeLat_1 = 34.0147504943816;
+                        zipCodeLon_1 = -84.25858505141764;
+                        radiusInMeters_1 = 1609.34;
+                        locations = data.filter(function (location) {
+                            var distance = (0, geolib_1.getDistance)({ lat: parseFloat(location.lat), lon: parseFloat(location.lon) }, // user input zipCode
+                            { lat: parseFloat(zipCodeLat_1 + ""), lon: parseFloat(zipCodeLon_1 + "") } // kitchen zipCode
+                            );
+                            return distance <= radiusInMeters_1;
+                        });
+                        res.json({ locations: locations });
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_1 = _a.sent();
+                        console.error('Error fetching locations:', error_1);
+                        res.status(500).json({ error: 'An error occurred while fetching locations' });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    }
+};
+//# sourceMappingURL=location.controller.js.map

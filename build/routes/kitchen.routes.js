@@ -18,3 +18,4 @@ routes.delete("/:id", kitchen_controller_1.kitchenController.deleteKitchen);
 // This route use tp emty the contenct of all table in database.
 routes.delete("/", kitchen_controller_1.kitchenController.deleteAll);
 exports.default = routes;
+//# sourceMappingURL=kitchen.routes.js.map

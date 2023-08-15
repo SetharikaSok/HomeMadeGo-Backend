@@ -13,7 +13,8 @@ var upload = (0, multer_1.default)({ storage: storage });
 var routes = (0, express_1.Router)();
 routes.post("/", upload.single('file'), user_controller_1.userController.authmiddleware, menuItem_controller_1.menuItemController.createMenuItem);
 routes.get("/:id", menuItem_controller_1.menuItemController.findUniqueMenuItem);
-routes.get("/", menuItem_controller_1.menuItemController.findAllMenuItems);
+routes.get("/kitchen/:kitchenId", menuItem_controller_1.menuItemController.findAllMenuItems);
 routes.delete("/:id", menuItem_controller_1.menuItemController.deleteItem);
 // routes.get("/image", )
 exports.default = routes;
+//# sourceMappingURL=menuItem.routes.js.map

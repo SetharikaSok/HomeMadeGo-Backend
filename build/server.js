@@ -8,3 +8,4 @@ var port = process.env.PORT || 5000;
 app_1.default.listen(port, function () {
     console.log("Server running on port ".concat(port));
 });
+//# sourceMappingURL=server.js.map

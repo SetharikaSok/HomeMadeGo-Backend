@@ -26,7 +26,9 @@ var App = /** @class */ (function () {
         this.server.use("/kitchen", routes_1.kitchenRoutes);
         this.server.use("/menuItem", routes_1.menuItemRoutes);
         this.server.use("/order", routes_1.orderRoutes);
+        this.server.use("/location", routes_1.locationRoutes);
     };
     return App;
 }());
 exports.default = new App().server;
+//# sourceMappingURL=app.js.map

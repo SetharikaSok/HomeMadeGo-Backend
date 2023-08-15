@@ -45,12 +45,13 @@ var image_controller_1 = require("./image.controller");
 exports.kitchenController = {
     createKitchen: function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var email, _a, name, address, contact, cuisineType, imgUrl, image_location, kitchen;
+            var email, _a, name, address1, address2, city, state, country, zipcode, latitude, longitude, contact, cuisineType, imgUrl, image_location, kitchen;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         email = req.email;
-                        _a = req.body, name = _a.name, address = _a.address, contact = _a.contact, cuisineType = _a.cuisineType, imgUrl = _a.imgUrl;
+                        _a = req.body, name = _a.name, address1 = _a.address1, address2 = _a.address2, city = _a.city, state = _a.state, country = _a.country, zipcode = _a.zipcode, latitude = _a.latitude, longitude = _a.longitude, contact = _a.contact, cuisineType = _a.cuisineType, imgUrl = _a.imgUrl;
+                        // find lat/lon of created kitchen
                         //file
                         if (!req.file) {
                             return [2 /*return*/, res.status(400).send('No file uploaded.')];
@@ -62,7 +63,14 @@ exports.kitchenController = {
                         return [4 /*yield*/, prisma_1.default.kitchen.create({
                                 data: {
                                     name: name,
-                                    address: address,
+                                    address1: address1,
+                                    address2: address2,
+                                    city: city,
+                                    state: state,
+                                    country: country,
+                                    zipcode: zipcode,
+                                    latitude: latitude,
+                                    longitude: longitude,
                                     contactNumber: contact,
                                     cuisineType: cuisineType,
                                     email: email,
@@ -157,3 +165,4 @@ exports.kitchenController = {
         });
     }
 };
+//# sourceMappingURL=kitchen.controller.js.map

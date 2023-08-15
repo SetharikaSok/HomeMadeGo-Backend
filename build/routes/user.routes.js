@@ -11,3 +11,4 @@ routes.get("/:id", user_controller_1.userController.findUniqueUser);
 routes.put("/:id", user_controller_1.userController.updateUser);
 routes.delete("/:id", user_controller_1.userController.deleteUser);
 exports.default = routes;
+//# sourceMappingURL=user.routes.js.map
